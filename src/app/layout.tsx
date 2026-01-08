@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "GiftBound - Secret Santa made easy",
-  description: "The easiest way to organize Secret Santa exchanges with friends and family. No accounts required, totally private.",
+  description:
+    "The easiest way to organize Secret Santa exchanges with friends and family. No accounts required, totally private.",
 };
 
 export default function RootLayout({
@@ -30,7 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <ToastContainer 
+        <ToastContainer
           position="top-right"
           autoClose={4000}
           hideProgressBar={false}
@@ -44,6 +46,7 @@ export default function RootLayout({
           toastClassName="!bg-background !text-foreground !border !border-border !shadow-lg !rounded-xl !font-sans !text-sm !font-medium"
           progressClassName="!bg-primary"
         />
+        <Analytics />
       </body>
     </html>
   );
