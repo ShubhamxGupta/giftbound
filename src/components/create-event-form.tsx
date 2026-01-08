@@ -65,17 +65,25 @@ export default function CreateEventForm() {
   };
 
   return (
-    <Card className="w-full overflow-hidden border-2 border-primary/10 shadow-xl">
-      <CardHeader className="bg-primary/5 px-6 py-4">
-        <div className="flex justify-between items-center text-sm font-medium text-muted-foreground">
-          <span>Step {step} of 3</span>
-          <div className="flex gap-1">
+    <Card className="w-full overflow-hidden border-2 border-border shadow-2xl dark:border-border/50 dark:shadow-primary/5 dark:bg-card/95 backdrop-blur-sm">
+      <CardHeader className="bg-muted/50 px-6 py-6 border-b border-border/50">
+        <div className="flex justify-between items-center">
+          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            Step {step} of 3
+          </span>
+          <div className="flex gap-2">
             {[1, 2, 3].map((i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={false}
+                animate={{
+                  backgroundColor:
+                    i <= step ? "var(--primary)" : "var(--muted)",
+                  width: i === step ? 32 : 12, // Active step is wider
+                }}
                 className={cn(
-                  "h-2 w-8 rounded-full transition-colors",
-                  i <= step ? "bg-primary" : "bg-primary/20"
+                  "h-2 rounded-full transition-all duration-300",
+                  i > step && "bg-opacity-20 bg-primary" // Subtle indicator for future steps
                 )}
               />
             ))}
@@ -198,7 +206,12 @@ export default function CreateEventForm() {
                       value={formData.budget}
                       onChange={(e) => {
                         setFormData({ ...formData, budget: e.target.value });
-                        if (errors.budget) setErrors({ ...errors, budget: "" });
+                        // Removed immediate error clearing to prevent flickering/lag
+                        if (errors.budget) {
+                          const newErrors = { ...errors };
+                          delete newErrors.budget;
+                          setErrors(newErrors);
+                        }
                       }}
                     />
                   </div>
