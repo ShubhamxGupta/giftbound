@@ -55,7 +55,7 @@ export default async function EventDashboard({
   const { event, participant, assignment, allParticipants } = data;
 
   return (
-    <div className="min-h-screen bg-background/50 dark:bg-background p-4 md:p-8 transition-colors duration-300">
+    <div className="min-h-screen p-4 md:p-8 transition-colors duration-300">
       <div className="mx-auto max-w-4xl space-y-8">
         <EventPoller
           token={token}

@@ -6,16 +6,16 @@ import { Gift, Sparkles, ShieldCheck, Mail } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
+    <div className="flex min-h-screen flex-col text-foreground overflow-x-hidden">
       {/* Navbar */}
       <nav className="absolute top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center max-w-7xl mx-auto md:px-8">
         <div className="flex items-center gap-2">
           <Image
             src="/favicon.png"
             alt="Logo"
-            width={32}
-            height={32}
-            className="w-8 h-8"
+            width={40}
+            height={40}
+            className="w-10 h-10"
           />
           <span className="text-xl font-bold tracking-tight">GiftBound</span>
         </div>
@@ -137,7 +137,7 @@ export default function Home() {
             </li>
           </ul>
         </div>
-        <div className="flex-1 relative w-full h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl skew-y-3 hover:skew-y-0 transition-all duration-700 bg-black/20">
+        <div className="flex-1 relative w-full h-[300px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl md:skew-y-3 md:hover:skew-y-0 transition-all duration-700 bg-black/20 mt-8 md:mt-0">
           <Image
             src="/shuffle.png"
             alt="Magical shuffling"

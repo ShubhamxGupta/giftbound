@@ -1,64 +1,85 @@
 # GiftBound 🎁
 
-A modern, login-free Secret Santa organizer built with Next.js and Supabase.
+A premium, secure, and login-free Secret Santa organizer built with **Next.js 15**, **Supabase**, and **Resend**.
 
-![GiftBound Banner](/public/og-image.png)
+![GiftBound Banner](/public/hero.png)
 
-## Features
+## ✨ New Features
 
-- 🚀 **No Login Required**: Participants join with a code and email.
-- 🎨 **Beautiful UI**: Built with Tailwind CSS, Framer Motion, and shadcn/ui.
-- 🌙 **Dark Mode**: Fully supported using `next-themes`.
-- 🔄 **Real-time Updates**: Event status and assignments update automatically.
-- 🔒 **Secure**: UUID-based magic tokens for participant access.
+### 🎨 Visual & UX Overhaul
 
-## Tech Stack
+- **Premium Design**: A fully redesigned, "lifeful" landing page with 3D-style assets and glassmorphism UI.
+- **Custom Assets**: Custom gift-box favicon and high-quality feature graphics.
+- **Polished UX**: Professional `Lucide` icons, smooth Framer Motion animations, and intuitive navigation (Home button).
+- **Admin Dashboard**: Organizers can now **Kick** participants, **Resend** invite emails, and **Close** events completely.
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
-- **Database**: [Supabase](https://supabase.com/) (PostgreSQL)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Components**: [shadcn/ui](https://ui.shadcn.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+### 🔒 Security Hardening
 
-## Detailed Setup Instructions
+- **Authentication**: Replaced simple UUIDs with signed **JWTs** (JSON Web Tokens) for secure, stateless authentication.
+- **Email Verification**: Magic links are sent via email (Resend API) to verify ownership before joining.
+- **Rate Limiting**: Custom middleware to prevent spam and enumeration attacks.
+- **Strict Authorization**: Role-based access control (Host vs. Participant) enforced on all server actions.
 
-1. **Clone the repository**
+### 🛡️ Data Integrity
+
+- **Transactional Shuffle**: Atomic shuffling using PostgreSQL RPC functions to prevent race conditions.
+- **Audit Logging**: Comprehensive audit trail for critical actions (Create, Join, Shuffle, Kick).
+- **Status Timeline**: Visual event lifecycle tracking (Draft -> Active -> Completed).
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router & Server Actions)
+- **Database**: [Supabase](https://supabase.com/) (PostgreSQL + RPC)
+- **Email**: [Resend](https://resend.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
+- **Security**: `jose` (JWT), `server-only` context
+- **Testing**: `vitest`
+
+## 🚀 Setup Instructions
+
+1. **Clone & Install**
 
    ```bash
-   git clone https://github.com/yourusername/giftbound.git
+   git clone https://github.com/shubhamxgupta1/giftbound.git
    cd giftbound
-   ```
-
-2. **Install dependencies**
-
-   ```bash
    npm install
    ```
 
-3. **Environment Setup**
-   Create a `.env.local` file in the root directory:
+2. **Environment Variables**
+   Create a `.env.local` file:
 
    ```env
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   # Supabase
+   NEXT_PUBLIC_SUPABASE_URL=your_project_url
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+   # App URL (for Magic Links)
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+   # Security
+   JWT_SECRET=your_super_secret_jwt_key
+
+   # Email (Resend)
+   RESEND_API_KEY=your_resend_api_key
    ```
 
-   > **Note**: This app uses the Service Role Key for server-side actions to manage assignments securely.
+3. **Database Setup**
+   Run the SQL scripts in `src/lib/` via Supabase SQL Editor:
+   - `schema.sql`: Tables and basic policies.
+   - `rpc_shuffle.sql`: Atomic shuffle function.
+   - `audit_schema.sql`: Audit logging table.
 
-4. **Database Schema**
-   Run the SQL commands found in `src/lib/schema.sql` in your Supabase SQL Editor to set up the tables and security policies.
-
-5. **Run the development server**
+4. **Run Development Server**
 
    ```bash
    npm run dev
    ```
 
-6. **Build for production**
+5. **Build for Production**
    ```bash
    npm run build
    ```
 
-## License
+## 📄 License
 
 MIT
