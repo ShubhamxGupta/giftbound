@@ -10,7 +10,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Gift, Calendar, DollarSign, UserCheck } from "lucide-react";
 import { redirect } from "next/navigation";
-import { OrganizerControls } from "@/components/organizer-controls";
+import { AdminDashboard } from "@/components/admin-dashboard";
+import { EventTimeline } from "@/components/event-timeline";
+
+// ... existing imports ...
+
+// ... inside component ...
+
 import { WishlistForm } from "@/components/wishlist-form";
 import { GiftReveal } from "@/components/gift-reveal";
 import { CopyButton } from "@/components/copy-button";
@@ -106,6 +112,8 @@ export default async function EventDashboard({
             <LogoutButton />
           </div>
         </header>
+
+        <EventTimeline status={event.status} />
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Assignment Section */}
@@ -214,8 +222,10 @@ export default async function EventDashboard({
           <div className="space-y-6">
             {/* Organizer Controls - Show for Draft OR Active */}
             {participant.is_organizer && (
-              <OrganizerControls
+              <AdminDashboard
                 eventId={event.id}
+                token={token}
+                participants={allParticipants || []}
                 eventStatus={event.status}
               />
             )}

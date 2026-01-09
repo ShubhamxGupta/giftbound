@@ -41,6 +41,8 @@ export function JoinEventForm() {
     return isValid;
   };
 
+  const [successMessage, setSuccessMessage] = useState("");
+
   const handleJoin = async () => {
     if (!validate()) {
       toast.error("Please check your input");
@@ -49,15 +51,53 @@ export function JoinEventForm() {
 
     setIsLoading(true);
     try {
-      await joinEvent(formData.code, formData.name, formData.email);
-      toast.success("Joined successfully!");
+      const result = await joinEvent(
+        formData.code,
+        formData.name,
+        formData.email
+      );
+      if (result && result.success) {
+        setSuccessMessage(result.message);
+        toast.success("Link sent!");
+      }
     } catch (error: unknown) {
       const e = error as Error;
       if (e.message === "NEXT_REDIRECT") return;
       toast.error(e.message || "Failed to join");
+    } finally {
       setIsLoading(false);
     }
   };
+
+  if (successMessage) {
+    return (
+      <Card className="w-full max-w-md mx-auto border-2 border-border shadow-2xl dark:border-border/50 dark:shadow-primary/5 dark:bg-card/95 backdrop-blur-sm">
+        <CardHeader className="text-center bg-muted/30 pb-8 pt-8 border-b border-border/40">
+          <div className="bg-primary/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ring-4 ring-background shadow-inner">
+            <Users className="h-10 w-10 text-primary" />
+          </div>
+          <CardTitle className="text-3xl font-bold tracking-tight">
+            Check your Email
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4 p-6 text-center">
+          <p className="text-muted-foreground text-lg">{successMessage}</p>
+          <p className="text-sm text-muted-foreground/80">
+            We sent a magic link to <strong>{formData.email}</strong>
+          </p>
+        </CardContent>
+        <CardFooter className="bg-muted/50 p-6">
+          <Button
+            className="w-full"
+            variant="outline"
+            onClick={() => setSuccessMessage("")}
+          >
+            Back
+          </Button>
+        </CardFooter>
+      </Card>
+    );
+  }
 
   return (
     <Card className="w-full max-w-md mx-auto border-2 border-border shadow-2xl dark:border-border/50 dark:shadow-primary/5 dark:bg-card/95 backdrop-blur-sm">
