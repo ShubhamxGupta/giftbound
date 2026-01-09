@@ -3,7 +3,8 @@
 import { createClient } from '@supabase/supabase-js'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { Participant } from '@/lib/types'
+
+
 
 // Initialize Supabase Admin Client for Server Actions
 function getSupabaseAdmin() {
@@ -144,8 +145,23 @@ export async function shuffleEvent(eventId: string) {
     }
     
     // Check Derangement (no index i s.t. shuffled[i] == ids[i])
-    // AND Check exclusions (if implemented). simple self-check for now.
-    valid = ids.every((id, i) => id !== shuffled[i])
+    const noSelf = ids.every((id, i) => id !== shuffled[i])
+
+    // Check Mutual Assignment (A -> B AND B -> A) - prevent this for groups > 2
+    let noMutual = true
+    if (ids.length > 2) {
+      const assignmentMap = new Map()
+      ids.forEach((id, idx) => assignmentMap.set(id, shuffled[idx]))
+      
+      for (const [giver, receiver] of assignmentMap) {
+        if (assignmentMap.get(receiver) === giver) {
+          noMutual = false
+          break
+        }
+      }
+    }
+
+    valid = noSelf && noMutual
     attempts++
   }
 
@@ -264,7 +280,7 @@ export async function checkUpdates(token: string, currentAssignmentId: string | 
     
   if (!p) return { changed: false }
   
-  const newStatus = (p.events as any).status
+  const newStatus = (p.events as unknown as { status: string }).status
   const newAssignmentId = p.assigned_participant_id
 
   // Trigger update if:
@@ -274,7 +290,7 @@ export async function checkUpdates(token: string, currentAssignmentId: string | 
   const assignmentChanged = newAssignmentId !== currentAssignmentId
   
   if (statusChanged || assignmentChanged) {
-      console.log(`Update detected for ${token}: Status ${currentStatus}->${newStatus}, Asg ${currentAssignmentId}->${newAssignmentId}`)
+
   }
   
   return { 

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { shuffleEvent } from "@/app/actions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 
 export function OrganizerControls({
   eventId,
@@ -16,7 +15,6 @@ export function OrganizerControls({
 }) {
   const [loading, setLoading] = useState(false);
   const [confirming, setConfirming] = useState(false);
-  const router = useRouter();
 
   const handleShuffle = async () => {
     if (!confirming) {
@@ -39,8 +37,9 @@ export function OrganizerControls({
       // Force a hard reload to ensure all server components update (Gift Reveal, etc.)
       // This solves the issue where router.refresh() might be too soft or cached
       window.location.reload();
-    } catch (e: any) {
+    } catch (error: unknown) {
       setLoading(false);
+      const e = error as Error;
       console.error(e);
       if (e.message === "NEXT_REDIRECT") return;
       toast.error(e.message || "Failed to shuffle");

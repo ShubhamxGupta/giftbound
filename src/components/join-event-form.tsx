@@ -12,11 +12,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { joinEvent } from "@/app/actions";
-import { Users, ArrowRight } from "lucide-react";
+import { Users } from "lucide-react";
 import { toast } from "react-toastify";
 
 export function JoinEventForm() {
-  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({ code: "", name: "", email: "" });
   const [errors, setErrors] = useState({ code: "", name: "", email: "" });
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +51,8 @@ export function JoinEventForm() {
     try {
       await joinEvent(formData.code, formData.name, formData.email);
       toast.success("Joined successfully!");
-    } catch (e: any) {
+    } catch (error: unknown) {
+      const e = error as Error;
       if (e.message === "NEXT_REDIRECT") return;
       toast.error(e.message || "Failed to join");
       setIsLoading(false);

@@ -438,11 +438,12 @@ export default function CreateEventForm() {
               setIsLoading(true);
               try {
                 await createEvent(formData);
-              } catch (e: any) {
+              } catch (error: unknown) {
+                const e = error as Error & { message?: string };
                 console.error(e);
-                alert(`Error: ${e.message || "Something went wrong"}`);
-                setIsLoading(false);
+                toast.error(e.message || "Something went wrong");
               }
+              setIsLoading(false);
             }}
             disabled={isLoading}
           >

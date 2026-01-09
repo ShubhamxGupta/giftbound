@@ -157,49 +157,56 @@ export default async function EventDashboard({
                 <UserCheck className="h-5 w-5 text-primary" />
                 Participants
               </CardTitle>
-              <CardDescription>Who's joining the fun?</CardDescription>
+              <CardDescription>Who&apos;s joining the fun?</CardDescription>
             </CardHeader>
             <CardContent className="p-0">
               <div className="divide-y divide-border/40">
-                {allParticipants?.map((p: any) => (
-                  <div
-                    key={p.id}
-                    className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={cn(
-                          "h-10 w-10 rounded-full flex items-center justify-center text-sm font-bold shadow-inner",
-                          p.id === participant.id
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted text-muted-foreground"
-                        )}
-                      >
-                        {p.name.charAt(0)}
-                      </div>
-                      <div className="flex flex-col">
-                        <span
+                {allParticipants?.map(
+                  (p: {
+                    id: string;
+                    name: string;
+                    is_organizer: boolean;
+                    status: string;
+                  }) => (
+                    <div
+                      key={p.id}
+                      className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
                           className={cn(
-                            "font-medium",
-                            p.id === participant.id && "text-primary"
+                            "h-10 w-10 rounded-full flex items-center justify-center text-sm font-bold shadow-inner",
+                            p.id === participant.id
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-muted text-muted-foreground"
                           )}
                         >
-                          {p.name} {p.id === participant.id && "(You)"}
-                        </span>
-                        {p.is_organizer && (
-                          <span className="text-[10px] text-muted-foreground font-mono">
-                            ORGANIZER
+                          {p.name.charAt(0)}
+                        </div>
+                        <div className="flex flex-col">
+                          <span
+                            className={cn(
+                              "font-medium",
+                              p.id === participant.id && "text-primary"
+                            )}
+                          >
+                            {p.name} {p.id === participant.id && "(You)"}
                           </span>
-                        )}
+                          {p.is_organizer && (
+                            <span className="text-[10px] text-muted-foreground font-mono">
+                              ORGANIZER
+                            </span>
+                          )}
+                        </div>
                       </div>
+                      {p.status === "JOINED" && (
+                        <div className="bg-green-500/10 text-green-600 dark:text-green-400 p-1.5 rounded-full">
+                          <UserCheck className="h-4 w-4" />
+                        </div>
+                      )}
                     </div>
-                    {p.status === "JOINED" && (
-                      <div className="bg-green-500/10 text-green-600 dark:text-green-400 p-1.5 rounded-full">
-                        <UserCheck className="h-4 w-4" />
-                      </div>
-                    )}
-                  </div>
-                ))}
+                  )
+                )}
               </div>
             </CardContent>
           </Card>

@@ -19,6 +19,6 @@ export interface Event {
   budget: string | null
   creator_email: string
   status: 'DRAFT' | 'ACTIVE' | 'COMPLETED' | 'ARCHIVED'
-  settings: any
+  settings: Record<string, unknown>
   participants?: Participant[]
 }

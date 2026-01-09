@@ -1,41 +1,45 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { checkUpdates } from '@/app/actions'
-import { toast } from 'react-toastify'
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { checkUpdates } from "@/app/actions";
+import { toast } from "react-toastify";
 
-export function EventPoller({ 
-  token, 
+export function EventPoller({
+  token,
   currentAssignmentId,
-  currentStatus
-}: { 
-  token: string
-  currentAssignmentId: string | null
-  currentStatus: string
+  currentStatus,
+}: {
+  token: string;
+  currentAssignmentId: string | null;
+  currentStatus: string;
 }) {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    console.log(`Poller started. Status: ${currentStatus}, Asg: ${currentAssignmentId}`)
+    console.log(
+      `Poller started. Status: ${currentStatus}, Asg: ${currentAssignmentId}`
+    );
     // Poll every 4 seconds
     const interval = setInterval(async () => {
       try {
-        console.log("Polling...")
-        const result = await checkUpdates(token, currentAssignmentId, currentStatus)
-        
+        const result = await checkUpdates(
+          token,
+          currentAssignmentId,
+          currentStatus
+        );
+
         if (result.changed) {
-            console.log("Change detected! Refreshing...")
-            toast.info("Update detected! Refreshing...")
-            window.location.reload()
+          toast.info("Update detected! Refreshing...");
+          window.location.reload();
         }
       } catch (e) {
-        console.error("Polling error", e)
+        console.error("Polling error", e);
       }
-    }, 4000)
+    }, 4000);
 
-    return () => clearInterval(interval)
-  }, [token, currentAssignmentId, currentStatus, router])
+    return () => clearInterval(interval);
+  }, [token, currentAssignmentId, currentStatus, router]);
 
-  return null // Invisible component
+  return null; // Invisible component
 }
