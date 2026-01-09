@@ -152,7 +152,7 @@ export default function Home() {
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Stop using hats and scraps of paper. GiftBound handles the messy
-            parts invitations, shuffling, and wishlists so you can enjoy the
+            part invitations, shuffling, and wishlists so you can enjoy the
             holiday cheer.
           </p>
 
