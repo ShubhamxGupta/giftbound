@@ -232,6 +232,7 @@ export default async function EventDashboard({
                 token={token}
                 participants={allParticipants || []}
                 eventStatus={event.status}
+                joinCode={(event as any).join_code || ""}
               />
             )}
 

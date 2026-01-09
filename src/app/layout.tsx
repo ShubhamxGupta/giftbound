@@ -5,6 +5,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
+import { JsonLd } from "@/components/json-ld";
+import { CSPostHogProvider } from "@/components/analytics-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +18,66 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const baseUrl =
+  process.env.NEXT_PUBLIC_APP_URL || "https://giftbound.vercel.app";
+
 export const metadata: Metadata = {
-  title: "GiftBound - Secret Santa made easy",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "GiftBound - The Easiest Secret Santa Generator",
+    template: "%s | GiftBound",
+  },
   description:
-    "The easiest way to organize Secret Santa exchanges with friends and family. No accounts required, totally private.",
+    "Organize Secret Santa exchanges in seconds. No accounts required, totally private, and free. Perfect for friends, families, and office parties.",
+  keywords: [
+    "Secret Santa",
+    "Secret Santa Generator",
+    "Office Secret Santa",
+    "Christmas Gift Exchange",
+    "Online Secret Santa",
+    "Gift Exchange Organizer",
+  ],
+  authors: [{ name: "Shubham Gupta" }],
+  creator: "Shubham Gupta",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: baseUrl,
+    title: "GiftBound - The Easiest Secret Santa Generator",
+    description:
+      "Organize Secret Santa exchanges in seconds. No accounts required, totally private, and free.",
+    siteName: "GiftBound",
+    images: [
+      {
+        url: "/og-image.png", // We will need to make sure this image exists or is generated
+        width: 1200,
+        height: 630,
+        alt: "GiftBound Secret Santa Generator",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GiftBound - The Easiest Secret Santa Generator",
+    description:
+      "Organize Secret Santa exchanges in seconds. No accounts required, totally private, and free.",
+    images: ["/og-image.png"], // Same here
+    creator: "@shubhamGupta", // Placeholder, user might want to update this
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
@@ -40,22 +98,25 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
-          <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light" // We might want to make this dynamic or 'colored'
-            toastClassName="!bg-background !text-foreground !border !border-border !shadow-lg !rounded-xl !font-sans !text-sm !font-medium"
-            progressClassName="!bg-primary"
-          />
-          <Analytics />
+          <CSPostHogProvider>
+            <JsonLd />
+            {children}
+            <ToastContainer
+              position="top-right"
+              autoClose={4000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light" // We might want to make this dynamic or 'colored'
+              toastClassName="!bg-background !text-foreground !border !border-border !shadow-lg !rounded-xl !font-sans !text-sm !font-medium"
+              progressClassName="!bg-primary"
+            />
+            <Analytics />
+          </CSPostHogProvider>
         </ThemeProvider>
       </body>
     </html>

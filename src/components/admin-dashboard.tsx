@@ -19,6 +19,8 @@ import {
 import { toast } from "react-toastify";
 import { Trash2, Send, Lock, Shuffle, ShieldAlert } from "lucide-react";
 
+import { ShareButtons } from "@/components/share-buttons";
+
 // Define explicit types for props
 interface Participant {
   id: string;
@@ -32,6 +34,7 @@ interface AdminDashboardProps {
   token: string;
   participants: Participant[];
   eventStatus: string;
+  joinCode: string;
 }
 
 export function AdminDashboard({
@@ -39,6 +42,7 @@ export function AdminDashboard({
   token,
   participants,
   eventStatus,
+  joinCode,
 }: AdminDashboardProps) {
   const [loading, setLoading] = useState<string | null>(null);
 
@@ -155,70 +159,73 @@ export function AdminDashboard({
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b pb-2">
-            <h3 className="font-semibold text-sm text-foreground">
-              Participants ({participants.length})
-            </h3>
-            <span className="text-xs text-muted-foreground">
-              {participants.filter((p) => p.status === "JOINED").length} joined
-            </span>
-          </div>
+          <span className="text-xs text-muted-foreground">
+            {participants.filter((p) => p.status === "JOINED").length} joined
+          </span>
+        </div>
 
-          <div className="grid gap-3 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border">
-            {participants.map((p) => (
-              <div
-                key={p.id}
-                className="group flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-all shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`w-2 h-2 rounded-full ${p.status === "JOINED" ? "bg-green-500" : "bg-yellow-500"}`}
-                  />
-                  <div className="flex flex-col">
-                    <span className="font-medium text-sm leading-none flex items-center gap-2">
-                      {p.name}
-                      {p.is_organizer && (
-                        <Badge
-                          variant="secondary"
-                          className="text-[10px] h-5 px-1.5 font-normal"
-                        >
-                          HOST
-                        </Badge>
-                      )}
-                    </span>
-                    <span className="text-xs text-muted-foreground mt-1">
-                      {p.status}
-                    </span>
-                  </div>
+        <div className="mb-6 p-4 bg-muted/30 rounded-lg border border-border/50">
+          <h4 className="text-sm font-semibold mb-3">Invite Participants</h4>
+          <ShareButtons
+            url={`${typeof window !== "undefined" ? window.location.origin : "https://giftbound.vercel.app"}/join?code=${joinCode}`}
+            title="Join my Secret Santa Party!"
+          />
+        </div>
+
+        <div className="grid gap-3 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border">
+          {participants.map((p) => (
+            <div
+              key={p.id}
+              className="group flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-all shadow-sm"
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-2 h-2 rounded-full ${p.status === "JOINED" ? "bg-green-500" : "bg-yellow-500"}`}
+                />
+                <div className="flex flex-col">
+                  <span className="font-medium text-sm leading-none flex items-center gap-2">
+                    {p.name}
+                    {p.is_organizer && (
+                      <Badge
+                        variant="secondary"
+                        className="text-[10px] h-5 px-1.5 font-normal"
+                      >
+                        HOST
+                      </Badge>
+                    )}
+                  </span>
+                  <span className="text-xs text-muted-foreground mt-1">
+                    {p.status}
+                  </span>
                 </div>
-
-                {!p.is_organizer && (
-                  <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-9 w-9 text-muted-foreground hover:text-primary"
-                      onClick={() => handleResend(p.id)}
-                      disabled={!!loading}
-                      title="Resend Invite"
-                    >
-                      <Send className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-9 w-9 text-muted-foreground hover:text-destructive"
-                      onClick={() => handleKick(p.id, p.name)}
-                      disabled={!!loading || eventStatus !== "DRAFT"}
-                      title="Kick User"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                )}
               </div>
-            ))}
-          </div>
+
+              {!p.is_organizer && (
+                <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-9 w-9 text-muted-foreground hover:text-primary"
+                    onClick={() => handleResend(p.id)}
+                    disabled={!!loading}
+                    title="Resend Invite"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-9 w-9 text-muted-foreground hover:text-destructive"
+                    onClick={() => handleKick(p.id, p.name)}
+                    disabled={!!loading || eventStatus !== "DRAFT"}
+                    title="Kick User"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </CardContent>
     </Card>
