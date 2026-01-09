@@ -99,24 +99,29 @@ export function AdminDashboard({
   };
 
   return (
-    <Card className="border-2 border-primary/20 mt-8">
-      <CardHeader>
-        <div className="flex justify-between items-center">
-          <div>
+    <Card className="w-full border shadow-sm mt-8 bg-card/50 backdrop-blur-sm">
+      <CardHeader className="pb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div className="space-y-1">
             <CardTitle className="text-xl flex items-center gap-2">
               🛡️ Admin Controls
-              <Badge variant="outline">{eventStatus}</Badge>
+              <Badge
+                variant={eventStatus === "ACTIVE" ? "default" : "outline"}
+                className="ml-2"
+              >
+                {eventStatus}
+              </Badge>
             </CardTitle>
-            <CardDescription>
-              Manage participants and event lifecycle
+            <CardDescription className="text-sm">
+              Manage event lifecycle and participants
             </CardDescription>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 w-full sm:w-auto">
             {eventStatus === "DRAFT" && (
               <Button
                 onClick={handleShuffle}
                 disabled={!!loading || participants.length < 2}
-                className="bg-primary text-primary-foreground"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground flex-1 sm:flex-none"
               >
                 {loading === "shuffle" ? (
                   "Shuffling..."
@@ -130,9 +135,10 @@ export function AdminDashboard({
             {eventStatus !== "COMPLETED" && (
               <Button
                 variant="destructive"
-                size="sm"
+                size="default" // Changed from sm for better touch target
                 onClick={handleClose}
                 disabled={!!loading}
+                className="flex-1 sm:flex-none"
               >
                 {loading === "close" ? (
                   "Closing..."
@@ -148,50 +154,64 @@ export function AdminDashboard({
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <h3 className="font-semibold text-sm text-muted-foreground">
-            Participants
-          </h3>
-          <div className="grid gap-2">
+          <div className="flex items-center justify-between border-b pb-2">
+            <h3 className="font-semibold text-sm text-foreground">
+              Participants ({participants.length})
+            </h3>
+            <span className="text-xs text-muted-foreground">
+              {participants.filter((p) => p.status === "JOINED").length} joined
+            </span>
+          </div>
+
+          <div className="grid gap-3 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border">
             {participants.map((p) => (
               <div
                 key={p.id}
-                className="flex items-center justify-between p-2 rounded-md bg-muted/40 hover:bg-muted/60 transition-colors"
+                className="group flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-all shadow-sm"
               >
-                <div className="flex items-center gap-2">
-                  <span className="font-medium text-sm">{p.name}</span>
-                  {p.is_organizer && (
-                    <Badge variant="secondary" className="text-[10px]">
-                      HOST
-                    </Badge>
-                  )}
-                  <Badge
-                    variant={p.status === "JOINED" ? "default" : "secondary"}
-                    className="text-[10px]"
-                  >
-                    {p.status}
-                  </Badge>
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`w-2 h-2 rounded-full ${p.status === "JOINED" ? "bg-green-500" : "bg-yellow-500"}`}
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-medium text-sm leading-none flex items-center gap-2">
+                      {p.name}
+                      {p.is_organizer && (
+                        <Badge
+                          variant="secondary"
+                          className="text-[10px] h-5 px-1.5 font-normal"
+                        >
+                          HOST
+                        </Badge>
+                      )}
+                    </span>
+                    <span className="text-xs text-muted-foreground mt-1">
+                      {p.status}
+                    </span>
+                  </div>
                 </div>
+
                 {!p.is_organizer && (
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                     <Button
                       variant="ghost"
-                      size="icon"
+                      size="sm"
                       className="h-8 w-8 text-muted-foreground hover:text-primary"
                       onClick={() => handleResend(p.id)}
                       disabled={!!loading}
                       title="Resend Invite"
                     >
-                      <Send className="h-3 w-3" />
+                      <Send className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="ghost"
-                      size="icon"
+                      size="sm"
                       className="h-8 w-8 text-muted-foreground hover:text-destructive"
                       onClick={() => handleKick(p.id, p.name)}
                       disabled={!!loading || eventStatus !== "DRAFT"}
                       title="Kick User"
                     >
-                      <Trash2 className="h-3 w-3" />
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 )}

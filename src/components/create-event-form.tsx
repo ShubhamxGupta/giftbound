@@ -440,6 +440,10 @@ export default function CreateEventForm() {
                 await createEvent(formData);
               } catch (error: unknown) {
                 const e = error as Error & { message?: string };
+                if (e.message === "NEXT_REDIRECT") {
+                  // This is expected behavior for redirect() in Server Actions
+                  return;
+                }
                 console.error(e);
                 toast.error(e.message || "Something went wrong");
               }
