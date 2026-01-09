@@ -11,6 +11,7 @@ import { Gift, Calendar, DollarSign, UserCheck, Home } from "lucide-react";
 import { AdminDashboard } from "@/components/admin-dashboard";
 import { EventTimeline } from "@/components/event-timeline";
 import Link from "next/link";
+import { SocialShare } from "@/components/social-share";
 import { Button } from "@/components/ui/button";
 
 // ... existing imports ...
@@ -81,7 +82,7 @@ export default async function EventDashboard({
                 </div>
               )}
               {event.join_code && (
-                <div className="flex items-center gap-3 bg-primary/10 px-4 py-1 rounded-full border border-primary/20 group hover:bg-primary/15 transition-colors">
+                <div className="flex items-center gap-2 bg-primary/10 px-5 py-2 rounded-full border border-primary/20 group hover:bg-primary/15 transition-colors">
                   <span className="text-xs uppercase font-bold text-primary/80">
                     Code:
                   </span>
@@ -89,6 +90,10 @@ export default async function EventDashboard({
                     {event.join_code}
                   </code>
                   <CopyButton code={event.join_code} />
+                  <SocialShare
+                    joinCode={event.join_code}
+                    eventName={event.name}
+                  />
                 </div>
               )}
             </div>
@@ -232,7 +237,9 @@ export default async function EventDashboard({
                 token={token}
                 participants={allParticipants || []}
                 eventStatus={event.status}
-                joinCode={(event as any).join_code || ""}
+                joinCode={
+                  (event as unknown as { join_code: string }).join_code || ""
+                }
               />
             )}
 

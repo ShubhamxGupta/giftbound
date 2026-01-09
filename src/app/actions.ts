@@ -337,8 +337,7 @@ export async function shuffleEvent(eventId: string, token: string) {
     // Fallback if RPC not exists
     await Promise.all(ids.map((id, index) => 
        supabaseAdmin.from('participants').update({
-          assigned_participant_id: shuffled[index],
-          status: 'JOINED'
+          assigned_participant_id: shuffled[index]
        }).eq('id', id)
     ))
     await supabaseAdmin.from('events').update({ status: 'ACTIVE' }).eq('id', eventId)

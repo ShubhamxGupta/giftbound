@@ -85,8 +85,8 @@ export default function GuidePage() {
                 $25) so everyone buys gifts of similar value.
               </li>
               <li>
-                <strong>Draw names:</strong> Randomly assign a "giftee" to every
-                "Santa". This is where{" "}
+                <strong>Draw names:</strong> Randomly assign a
+                &quot;giftee&quot; to every &quot;Santa&quot;. This is where{" "}
                 <Link href="/" className="text-primary underline">
                   GiftBound
                 </Link>{" "}
@@ -133,7 +133,7 @@ export default function GuidePage() {
               </li>
               <li>
                 <strong>Keep it Secret:</strong> The fun is in the mystery!
-                Don't spill the beans until the gifts are opened.
+                Don&apos;t spill the beans until the gifts are opened.
               </li>
             </ul>
           </section>

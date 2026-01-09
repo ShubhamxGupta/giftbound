@@ -115,7 +115,8 @@ export default function Home() {
               Why choose GiftBound?
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We've stripped away the complexity so you can focus on the giving.
+              We&apos;ve stripped away the complexity so you can focus on the
+              giving.
             </p>
           </div>
 

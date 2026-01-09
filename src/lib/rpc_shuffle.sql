@@ -20,8 +20,7 @@ begin
   loop
     update participants
     set 
-      assigned_participant_id = (item->>'assigned_id')::uuid,
-      status = 'JOINED'
+      assigned_participant_id = (item->>'assigned_id')::uuid
     where id = (item->>'id')::uuid and event_id = p_event_id;
   end loop;
 end;

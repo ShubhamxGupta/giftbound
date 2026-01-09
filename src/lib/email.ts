@@ -38,12 +38,16 @@ export async function sendMagicLink(email: string, magicLink: string, eventName:
 
     if (error) {
         console.error('Resend Error:', error)
-         // Fallback logging if API fails
-         console.log('fallback mock link:', magicLink)
+        // Fallback logging if API fails
+        console.log('fallback mock link:', magicLink)
+        // Throw error so UI knows
+        throw new Error(error.message || 'Failed to send email')
     } else {
         console.log(`[PROD] Email sent to ${email} via Resend. ID: ${data?.id}`)
+        return { success: true, id: data?.id }
     }
   } catch (error) {
     console.error('Failed to send email:', error)
+    throw error
   }
 }

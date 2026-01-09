@@ -3,14 +3,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Users,
-  Building2,
-  CalendarCheck,
-  ShieldCheck,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { Users, Building2, CalendarCheck, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -76,8 +69,8 @@ export default function TeamsPage() {
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Boost team morale with a hassle-free gift exchange. No spreadsheets,
-            no "reply-all" emails. Just festive fun for your department or
-            entire company.
+            no &quot;reply-all&quot; emails. Just festive fun for your
+            department or entire company.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
@@ -131,8 +124,8 @@ export default function TeamsPage() {
         <div className="prose dark:prose-invert max-w-none space-y-6 text-lg text-muted-foreground">
           <p>
             Organizing a holiday gift exchange for work can be tricky. You have
-            to balance budgets, diverse interests, and remote logistics. Here's
-            how GiftBound makes it easy:
+            to balance budgets, diverse interests, and remote logistics.
+            Here&apos;s how GiftBound makes it easy:
           </p>
           <h3 className="text-2xl font-bold text-foreground">
             1. Set a Reasonable Budget
@@ -146,9 +139,9 @@ export default function TeamsPage() {
             2. Use Wishlists
           </h3>
           <p>
-            There's nothing worse than getting a gift you can't use. GiftBound
-            lets every employee add their own wishlist, so their Santa has clear
-            guidance while keeping the surprise alive.
+            There&apos;s nothing worse than getting a gift you can&apos;t use.
+            GiftBound lets every employee add their own wishlist, so their Santa
+            has clear guidance while keeping the surprise alive.
           </p>
           <h3 className="text-2xl font-bold text-foreground">3. Key Dates</h3>
           <p>
