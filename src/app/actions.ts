@@ -156,6 +156,7 @@ export async function createEvent(formData: {
     name: p.name,
     email: p.email,
     is_organizer: index === 0,
+    status: index === 0 ? 'JOINED' : 'INVITED'
   }))
 
   const { data: participants, error: partError } = await supabaseAdmin

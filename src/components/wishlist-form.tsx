@@ -21,7 +21,7 @@ export function WishlistForm({
     setLoading(true);
     try {
       await updateWishlist(token, wishlist);
-    } catch (e) {
+    } catch {
       alert("Failed to save wishlist");
     } finally {
       setLoading(false);

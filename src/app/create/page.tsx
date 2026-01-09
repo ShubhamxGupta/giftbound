@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import CreateEventForm from "@/components/create-event-form";
 import { ThemeToggle } from "@/components/theme-toggle";
 

@@ -1,0 +1,27 @@
+
+> secretsanta@0.1.0 lint
+> eslint
+
+
+D:\Projects\secretsanta\src\app\create\page.tsx
+  1:10  warning  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\secretsanta\src\app\event\[id]\page.tsx
+  10:10  warning  'Button' is defined but never used    @typescript-eslint/no-unused-vars
+  12:10  warning  'redirect' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\secretsanta\src\components\copy-button.tsx
+  17:14  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\secretsanta\src\components\event-timeline.tsx
+  1:32  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\secretsanta\src\components\gift-reveal.tsx
+  6:10  warning  'Card' is defined but never used         @typescript-eslint/no-unused-vars
+  6:16  warning  'CardContent' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\secretsanta\src\components\wishlist-form.tsx
+  24:14  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+Ô£û 8 problems (0 errors, 8 warnings)
+

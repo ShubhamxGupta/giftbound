@@ -17,7 +17,7 @@ import {
   shuffleEvent,
 } from "@/app/actions";
 import { toast } from "react-toastify";
-import { Trash2, Send, Lock, Shuffle } from "lucide-react";
+import { Trash2, Send, Lock, Shuffle, ShieldAlert } from "lucide-react";
 
 // Define explicit types for props
 interface Participant {
@@ -104,7 +104,8 @@ export function AdminDashboard({
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-1">
             <CardTitle className="text-xl flex items-center gap-2">
-              🛡️ Admin Controls
+              <ShieldAlert className="w-5 h-5 text-primary" />
+              Admin Controls
               <Badge
                 variant={eventStatus === "ACTIVE" ? "default" : "outline"}
                 className="ml-2"
@@ -195,8 +196,8 @@ export function AdminDashboard({
                   <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                     <Button
                       variant="ghost"
-                      size="sm"
-                      className="h-8 w-8 text-muted-foreground hover:text-primary"
+                      size="icon"
+                      className="h-9 w-9 text-muted-foreground hover:text-primary"
                       onClick={() => handleResend(p.id)}
                       disabled={!!loading}
                       title="Resend Invite"
@@ -205,8 +206,8 @@ export function AdminDashboard({
                     </Button>
                     <Button
                       variant="ghost"
-                      size="sm"
-                      className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                      size="icon"
+                      className="h-9 w-9 text-muted-foreground hover:text-destructive"
                       onClick={() => handleKick(p.id, p.name)}
                       disabled={!!loading || eventStatus !== "DRAFT"}
                       title="Kick User"

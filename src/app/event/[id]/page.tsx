@@ -7,9 +7,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Gift, Calendar, DollarSign, UserCheck } from "lucide-react";
-import { redirect } from "next/navigation";
 import { AdminDashboard } from "@/components/admin-dashboard";
 import { EventTimeline } from "@/components/event-timeline";
 

@@ -12,7 +12,15 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Calendar, DollarSign, Gift, Trash2, Plus } from "lucide-react";
+import {
+  Calendar,
+  DollarSign,
+  Gift,
+  Trash2,
+  Plus,
+  AlertCircle,
+  OctagonAlert,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "react-toastify";
 
@@ -132,7 +140,7 @@ export default function CreateEventForm() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-xs text-destructive font-medium flex items-center gap-1"
                   >
-                    ⚠️ {errors.name}
+                    <AlertCircle className="w-3 h-3" /> {errors.name}
                   </motion.p>
                 )}
               </div>
@@ -252,7 +260,7 @@ export default function CreateEventForm() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="bg-destructive/10 text-destructive text-sm p-3 rounded-md border border-destructive/20 mb-2 flex items-center gap-2"
                   >
-                    🚫 {errors.general}
+                    <OctagonAlert className="w-4 h-4" /> {errors.general}
                   </motion.div>
                 )}
                 {formData.participants.map((p, index) => (
