@@ -1,0 +1,23 @@
+
+> secretsanta@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 4.1s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/event/[id]/page.tsx:111:16
+Type error: Cannot find name 'Button'.
+
+  109 |             <div className="h-8 w-px bg-border/50 mx-1" />
+  110 |             <Link href="/" title="Return to Home">
+> 111 |               <Button variant="ghost" size="icon" className="rounded-full">
+      |                ^
+  112 |                 <Home className="h-5 w-5" />
+  113 |               </Button>
+  114 |             </Link>
+Next.js build worker exited with code: 1 and signal: null

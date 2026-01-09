@@ -7,9 +7,11 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { Gift, Calendar, DollarSign, UserCheck } from "lucide-react";
+import { Gift, Calendar, DollarSign, UserCheck, Home } from "lucide-react";
 import { AdminDashboard } from "@/components/admin-dashboard";
 import { EventTimeline } from "@/components/event-timeline";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 // ... existing imports ...
 
@@ -106,6 +108,11 @@ export default async function EventDashboard({
               </span>
             </div>
             <div className="h-8 w-px bg-border/50 mx-1" />
+            <Link href="/" title="Return to Home">
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Home className="h-5 w-5" />
+              </Button>
+            </Link>
             <ThemeToggle />
             <LogoutButton />
           </div>

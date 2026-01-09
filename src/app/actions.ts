@@ -269,6 +269,8 @@ export async function getEventData(eventId: string, token: string) {
     .eq('id', eventId)
     .single()
     
+  if (!event) return null
+    
   // 4. Get Assignment (if exists)
   let assignment = null
   if (participant.assigned_participant_id) {
