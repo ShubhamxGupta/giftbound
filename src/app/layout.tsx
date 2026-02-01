@@ -90,7 +90,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   verification: {
-    google: "google-site-verification=YOUR_VERIFICATION_CODE", // Replace with your code from Google Search Console
+    google:
+      "google-site-verification=kZLsm8vZ527s-_V4Tcjwn85lMqHQH7HgS8vLbfg0vmE",
   },
 };
 
