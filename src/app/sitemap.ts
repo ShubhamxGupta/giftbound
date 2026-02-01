@@ -22,6 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // We will add more routes here as we create them (teams, guide, etc.)
+    {
+      url: `${baseUrl}/guide`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
   ];
 }

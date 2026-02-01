@@ -78,6 +78,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  category: "technology",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "GiftBound",
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  verification: {
+    google: "google-site-verification=YOUR_VERIFICATION_CODE", // Replace with your code from Google Search Console
+  },
 };
 
 export default function RootLayout({

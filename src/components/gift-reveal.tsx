@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift, Sparkles } from "lucide-react";
 
@@ -10,13 +10,28 @@ export function GiftReveal({
   assignmentName,
   wishlist,
   isRevealedInitially = false,
+  eventId, // Add eventId prop to scope localStorage key
 }: {
   assignmentName: string;
   wishlist?: string;
   isRevealedInitially?: boolean;
+  eventId: string;
 }) {
+  const storageKey = `gift-revealed-${eventId}`;
+
+  // Initialize state as false (or prop value) to ensure server/client match during hydration
   const [isOpen, setIsOpen] = useState(isRevealedInitially);
   const [isShaking, setIsShaking] = useState(false);
+
+  // Check localStorage after mount to update state
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(storageKey);
+      if (saved === "true") {
+        setIsOpen(true);
+      }
+    }
+  }, [storageKey]);
 
   const handleOpen = () => {
     if (isOpen) return;
@@ -24,6 +39,10 @@ export function GiftReveal({
     setTimeout(() => {
       setIsShaking(false);
       setIsOpen(true);
+      // Persist to localStorage
+      if (typeof window !== "undefined") {
+        localStorage.setItem(storageKey, "true");
+      }
       confetti({
         particleCount: 150,
         spread: 70,

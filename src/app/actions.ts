@@ -63,7 +63,9 @@ export async function resendInvite(token: string, participantId: string) {
     
   if (!participant) throw new Error('Participant not found')
 
-  const eventName = (participant.events as unknown as { name: string }).name
+  // Handle events relation being an array or object safely
+  const eventData = participant.events as unknown as ({ name: string } | { name: string }[])
+  const eventName = Array.isArray(eventData) ? eventData[0]?.name : eventData?.name || 'Secret Santa'
   
   // Generate new token or reuse? 
   // Let's generate a fresh one to be safe/extend expiry.

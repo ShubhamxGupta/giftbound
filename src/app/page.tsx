@@ -19,7 +19,15 @@ export default function Home() {
           />
           <span className="text-xl font-bold tracking-tight">GiftBound</span>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-4">
+          <Link
+            href="/guide"
+            className="text-sm font-medium hover:text-primary transition-colors hidden sm:block"
+          >
+            How it Works
+          </Link>
+          <ThemeToggle />
+        </div>
       </nav>
 
       {/* Hero Section */}

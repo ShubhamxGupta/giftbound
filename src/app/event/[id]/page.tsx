@@ -142,6 +142,7 @@ export default async function EventDashboard({
                   <GiftReveal
                     assignmentName={assignment.name}
                     wishlist={assignment.wishlist}
+                    eventId={event.id}
                   />
                 ) : (
                   <div className="text-center py-12 text-muted-foreground max-w-md mx-auto">
@@ -196,7 +197,7 @@ export default async function EventDashboard({
                             "h-10 w-10 rounded-full flex items-center justify-center text-sm font-bold shadow-inner",
                             p.id === participant.id
                               ? "bg-primary text-primary-foreground"
-                              : "bg-muted text-muted-foreground"
+                              : "bg-muted text-muted-foreground",
                           )}
                         >
                           {p.name.charAt(0)}
@@ -205,7 +206,7 @@ export default async function EventDashboard({
                           <span
                             className={cn(
                               "font-medium",
-                              p.id === participant.id && "text-primary"
+                              p.id === participant.id && "text-primary",
                             )}
                           >
                             {p.name} {p.id === participant.id && "(You)"}
@@ -223,7 +224,7 @@ export default async function EventDashboard({
                         </div>
                       )}
                     </div>
-                  )
+                  ),
                 )}
               </div>
             </CardContent>

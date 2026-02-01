@@ -1,16 +1,18 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function sendMagicLink(email: string, magicLink: string, eventName: string) {
-  if (!process.env.RESEND_API_KEY) {
+  const apiKey = process.env.RESEND_API_KEY
+  
+  if (!apiKey) {
     console.log('===========================================================')
     console.log(`📧 MOCK EMAIL TO: ${email}`)
     console.log(`Subject: Join ${eventName}`)
     console.log(`Magic Link: ${magicLink}`)
     console.log('===========================================================')
-    return
+    return { success: true, id: 'mock' }
   }
+
+  const resend = new Resend(apiKey)
 
   try {
     const { data, error } = await resend.emails.send({

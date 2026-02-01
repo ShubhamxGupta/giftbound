@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -45,6 +45,14 @@ export function AdminDashboard({
   joinCode,
 }: AdminDashboardProps) {
   const [loading, setLoading] = useState<string | null>(null);
+  // Default to production URL for server rendering to match hydration
+  const [shareOrigin, setShareOrigin] = useState(
+    "https://giftbound.vercel.app",
+  );
+
+  useEffect(() => {
+    setShareOrigin(window.location.origin);
+  }, []);
 
   const handleKick = async (id: string, name: string) => {
     if (!confirm(`Are you sure you want to remove ${name}?`)) return;
@@ -167,7 +175,7 @@ export function AdminDashboard({
         <div className="mb-6 p-4 bg-muted/30 rounded-lg border border-border/50">
           <h4 className="text-sm font-semibold mb-3">Invite Participants</h4>
           <ShareButtons
-            url={`${typeof window !== "undefined" ? window.location.origin : "https://giftbound.vercel.app"}/join?code=${joinCode}`}
+            url={`${shareOrigin}/join?code=${joinCode}`}
             title="Join my Secret Santa Party!"
           />
         </div>

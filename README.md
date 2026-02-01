@@ -40,8 +40,8 @@ A premium, secure, and login-free Secret Santa organizer built with **Next.js 15
 1. **Clone & Install**
 
    ```bash
-   git clone https://github.com/shubhamxgupta1/giftbound.git
-   cd giftbound
+   git clone https://github.com/ShubhamxGupta/secretsanta.git
+   cd secretsanta
    npm install
    ```
 

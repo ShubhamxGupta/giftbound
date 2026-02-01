@@ -1,6 +1,12 @@
 import CreateEventForm from "@/components/create-event-form";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+export const metadata = {
+  title: "Create Event | GiftBound",
+  description:
+    "Set up your Secret Santa exchange in seconds. Set a budget, choose a date, and invite friends.",
+};
+
 export default function CreateEventPage() {
   return (
     <div className="flex min-h-screen items-center justify-center p-4 relative">
