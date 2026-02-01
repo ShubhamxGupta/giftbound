@@ -30,203 +30,209 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 flex flex-col items-center text-center">
-        {/* Abstract Background Gradient */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 pointer-events-none opacity-50 dark:opacity-30" />
+      <main className="flex-1 w-full">
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 flex flex-col items-center text-center">
+          {/* Abstract Background Gradient */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 pointer-events-none opacity-50 dark:opacity-30" />
 
-        <div className="relative z-10 max-w-5xl mx-auto space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/30 text-secondary-foreground text-sm font-medium border border-secondary/20 mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span>The #1 Free Secret Santa Generator</span>
-          </div>
+          <div className="relative z-10 max-w-5xl mx-auto space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/30 text-secondary-foreground text-sm font-medium border border-secondary/20 mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span>The #1 Free Secret Santa Generator</span>
+            </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight drop-shadow-sm animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-            The Easiest Way to <br className="hidden md:block" />
-            Play{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
-              Secret Santa
-            </span>
-          </h1>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight drop-shadow-sm animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+              The Easiest Way to <br className="hidden md:block" />
+              Play{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
+                Secret Santa
+              </span>
+            </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-            Organize your holiday gift exchange in seconds. No accounts
-            required, totally private, and free. Perfect for friends, families,
-            and office parties.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
-            <Link href="/create" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto text-lg px-8 py-7 rounded-full font-bold shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all hover:scale-105 active:scale-95"
-              >
-                Start an Exchange
-              </Button>
-            </Link>
-            <Link href="/join" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto text-lg px-8 py-7 rounded-full font-bold border-2 hover:bg-muted transition-all bg-background/50 backdrop-blur-sm"
-              >
-                Join Event
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        {/* Hero Image */}
-        <div className="mt-20 md:mt-28 relative w-full max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-border/50 animate-in fade-in zoom-in-95 duration-1000 delay-500">
-          <div className="aspect-[16/9] w-full bg-muted/20 relative">
-            <Image
-              src="/hero.png"
-              alt="Friends celebrating holiday with gifts"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-40"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof */}
-      <section className="py-12 border-y border-border/50 bg-card/30">
-        <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-12 md:gap-24 text-center">
-          <div>
-            <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
-              50k+
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+              Organize your holiday gift exchange in seconds. No accounts
+              required, totally private, and free. Perfect for friends,
+              families, and office parties.
             </p>
-            <p className="text-muted-foreground font-medium">Participants</p>
-          </div>
-          <div>
-            <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
-              10k+
-            </p>
-            <p className="text-muted-foreground font-medium">Events Created</p>
-          </div>
-          <div>
-            <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
-              100%
-            </p>
-            <p className="text-muted-foreground font-medium">Free & Private</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-muted/30 relative" id="features">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-              Why choose GiftBound?
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+              <Link href="/create" className="w-full sm:w-auto inline-block">
+                <Button
+                  size="lg"
+                  className="w-full text-lg px-8 py-7 rounded-full font-bold shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all hover:scale-105 active:scale-95"
+                >
+                  Start an Exchange
+                </Button>
+              </Link>
+              <Link href="/join" className="w-full sm:w-auto inline-block">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full text-lg px-8 py-7 rounded-full font-bold border-2 hover:bg-muted transition-all bg-background/50 backdrop-blur-sm"
+                >
+                  Join Event
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Hero Image */}
+          <div className="mt-20 md:mt-28 relative w-full max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-border/50 animate-in fade-in zoom-in-95 duration-1000 delay-500">
+            <div className="aspect-[16/9] w-full bg-muted/20 relative">
+              <Image
+                src="/hero.png"
+                alt="Friends celebrating holiday with gifts"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-40"></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Social Proof */}
+        <section className="py-12 border-y border-border/50 bg-card/30">
+          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-12 md:gap-24 text-center">
+            <div>
+              <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
+                50k+
+              </p>
+              <p className="text-muted-foreground font-medium">Participants</p>
+            </div>
+            <div>
+              <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
+                10k+
+              </p>
+              <p className="text-muted-foreground font-medium">
+                Events Created
+              </p>
+            </div>
+            <div>
+              <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
+                100%
+              </p>
+              <p className="text-muted-foreground font-medium">
+                Free & Private
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-24 bg-muted/30 relative" id="features">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+                Why choose GiftBound?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                We&apos;ve stripped away the complexity so you can focus on the
+                giving.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <FeatureCard
+                icon={<ShieldCheck className="w-10 h-10 text-green-500" />}
+                title="Totally Private"
+                description="No accounts required. We don't sell your emails. Your event details are encrypted and secure."
+              />
+              <FeatureCard
+                icon={<Gift className="w-10 h-10 text-primary" />}
+                title="Smart Shuffling"
+                description="Our specialized algorithm prevents self-matches and spouse-matches (coming soon!) to ensure a fair draw."
+              />
+              <FeatureCard
+                icon={<Mail className="w-10 h-10 text-blue-500" />}
+                title="Wishlists Built-in"
+                description="Participants can add wishlists directly to their profile, so their Secret Santa knows exactly what to get."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section
+          className="py-24 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16"
+          id="how-it-works"
+        >
+          <div className="flex-1 space-y-8">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              Focus on the Gift,
+              <br />
+              Not the Spreadsheet.
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We&apos;ve stripped away the complexity so you can focus on the
-              giving.
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Stop using hats and scraps of paper. GiftBound handles the messy
+              part invitations, shuffling, and wishlists so you can enjoy the
+              holiday cheer.
             </p>
+
+            <div className="space-y-6 pt-4">
+              <StepItem
+                number="1"
+                title="Create an event"
+                description="Set a budget, date, and details in seconds."
+              />
+              <StepItem
+                number="2"
+                title="Invite friends"
+                description="Share a simple link. No app download needed."
+              />
+              <StepItem
+                number="3"
+                title="We shuffle!"
+                description="Everyone gets their match via email instantly."
+              />
+            </div>
+
+            <div className="pt-4">
+              <Link href="/create">
+                <Button size="lg" className="rounded-full font-bold px-8">
+                  Create your Event Now
+                </Button>
+              </Link>
+            </div>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={<ShieldCheck className="w-10 h-10 text-green-500" />}
-              title="Totally Private"
-              description="No accounts required. We don't sell your emails. Your event details are encrypted and secure."
-            />
-            <FeatureCard
-              icon={<Gift className="w-10 h-10 text-primary" />}
-              title="Smart Shuffling"
-              description="Our specialized algorithm prevents self-matches and spouse-matches (coming soon!) to ensure a fair draw."
-            />
-            <FeatureCard
-              icon={<Mail className="w-10 h-10 text-blue-500" />}
-              title="Wishlists Built-in"
-              description="Participants can add wishlists directly to their profile, so their Secret Santa knows exactly what to get."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section
-        className="py-24 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16"
-        id="how-it-works"
-      >
-        <div className="flex-1 space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Focus on the Gift,
-            <br />
-            Not the Spreadsheet.
-          </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Stop using hats and scraps of paper. GiftBound handles the messy
-            part invitations, shuffling, and wishlists so you can enjoy the
-            holiday cheer.
-          </p>
-
-          <div className="space-y-6 pt-4">
-            <StepItem
-              number="1"
-              title="Create an event"
-              description="Set a budget, date, and details in seconds."
-            />
-            <StepItem
-              number="2"
-              title="Invite friends"
-              description="Share a simple link. No app download needed."
-            />
-            <StepItem
-              number="3"
-              title="We shuffle!"
-              description="Everyone gets their match via email instantly."
+          <div className="flex-1 relative w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl md:skew-y-3 md:hover:skew-y-0 transition-all duration-700 bg-black/20">
+            <Image
+              src="/shuffle.png"
+              alt="GiftBound magic shuffling animation interface"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-700"
             />
           </div>
+        </section>
 
-          <div className="pt-4">
-            <Link href="/create">
-              <Button size="lg" className="rounded-full font-bold px-8">
-                Create your Event Now
-              </Button>
-            </Link>
+        {/* FAQ Section */}
+        <section className="py-24 bg-card/50 border-y border-border/50">
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-16">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-6">
+              <FaqItem
+                question="Is this really free?"
+                answer="Yes! GiftBound is 100% free to use for unlimited participants and events."
+              />
+              <FaqItem
+                question="Do participants need to create an account?"
+                answer="No. Participants can join and view their match securely without creating a password or account."
+              />
+              <FaqItem
+                question="Can I see who drew who?"
+                answer="As the host, you have access to an admin dashboard, but by default, the matches are kept secret to preserve the surprise!"
+              />
+              <FaqItem
+                question="What if someone loses their email?"
+                answer="You can resend invite emails directly from your admin dashboard."
+              />
+            </div>
           </div>
-        </div>
-        <div className="flex-1 relative w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl md:skew-y-3 md:hover:skew-y-0 transition-all duration-700 bg-black/20">
-          <Image
-            src="/shuffle.png"
-            alt="GiftBound magic shuffling animation interface"
-            fill
-            className="object-cover hover:scale-105 transition-transform duration-700"
-          />
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 bg-card/50 border-y border-border/50">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-16">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            <FaqItem
-              question="Is this really free?"
-              answer="Yes! GiftBound is 100% free to use for unlimited participants and events."
-            />
-            <FaqItem
-              question="Do participants need to create an account?"
-              answer="No. Participants can join and view their match securely without creating a password or account."
-            />
-            <FaqItem
-              question="Can I see who drew who?"
-              answer="As the host, you have access to an admin dashboard, but by default, the matches are kept secret to preserve the surprise!"
-            />
-            <FaqItem
-              question="What if someone loses their email?"
-              answer="You can resend invite emails directly from your admin dashboard."
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <footer className="py-12 px-6 border-t border-border/50 bg-muted/20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">

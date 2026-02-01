@@ -65,8 +65,8 @@
   --popover: hsl(222 47% 13%);
   --popover-foreground: hsl(210 40% 98%);
 
-  /* Primary Red - Vibrant but legible against dark */
-  --primary: hsl(352 80% 60%);
+  /* Primary Red - Adjusted for better contrast with white text (AA compliance) */
+  --primary: hsl(352 80% 50%);
   --primary-foreground: hsl(0 0% 98%);
 
   /* Secondary Green - Vibrant */
