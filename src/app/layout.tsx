@@ -90,8 +90,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   verification: {
-    google:
-      "google-site-verification=kZLsm8vZ527s-_V4Tcjwn85lMqHQH7HgS8vLbfg0vmE",
+    google: "kZLsm8vZ527s-_V4Tcjwn85lMqHQH7HgS8vLbfg0vmE",
   },
 };
 
